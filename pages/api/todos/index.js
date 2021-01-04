@@ -9,7 +9,7 @@ export default async (req, res) => {
     switch (method) {
         case 'GET':
             try {
-                const todos = await Todo.find({}).sort({ created: -1 })
+                const todos = await Todo.find({}).sort({ _id: -1 })
                 return res.json(todos)
             } catch (error) {
                 return res.status(400).json({ error: error.message })

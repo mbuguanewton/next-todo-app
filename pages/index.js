@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import axios from 'axios'
 import AddTodo from '../src/components/addTodo./AddTodo'
+import TodoList from '../src/components/todoList/TodoList'
 
 export default function Home({ todos }) {
     const router = useRouter()
@@ -38,7 +39,13 @@ export default function Home({ todos }) {
                 edit={edit}
                 submit={handleSubmit}
             />
-            <pre>{JSON.stringify(todos, null, 4)}</pre>
+            <TodoList
+                todos={todos}
+                setValue={setValue}
+                edit={edit}
+                toggle={toggle}
+            />
+            {/* <pre>{JSON.stringify(todos, null, 4)}</pre> */}
         </div>
     )
 }

@@ -32,8 +32,8 @@ a {
         margin: 1rem 0;
 
         input {
-            height: 2.5rem;
-            border-radius: 10px 0 0 10px;
+            height: 3rem;
+            border-radius: 5px 0 0 5px;
             width: 80%;
             background: #eee;
             border: none;
@@ -46,8 +46,8 @@ a {
         }
 
         & > .btn {
-            height: 2.5rem;
-            border-radius: 0 10px 10px 0;
+            height: 3rem;
+            border-radius: 0 5px 5px 0;
             width: 20%;
             border: none;
 
@@ -63,4 +63,57 @@ a {
             }
         }
     }
+}
+
+.todos {
+    background: #fff;
+    border-radius: 10px;
+    width: 40%;
+    margin: 1rem auto;
+    padding: 20px;
+    height: auto;
+}
+
+.todo {
+    margin: 0.5rem 0;
+    border-bottom: 2px solid darken(#eee, 2%);
+    padding: 10px 0;
+
+    &__wrapper {
+        @include flex($justify: space-between, $align: center);
+        &--title {
+            width: 80%;
+            cursor: pointer;
+        }
+        &--actions {
+            @include flex($justify: space-between);
+            width: 10%;
+
+            &-edit {
+                color: $prime-color;
+            }
+            &-delete {
+                color: $red;
+            }
+        }
+    }
+}
+
+.input {
+    height: 3rem;
+    border-radius: 5px;
+    width: 100%;
+    background: #eee;
+    border: none;
+    padding: 5px 20px;
+
+    & :focus {
+        outline: none !important;
+        border: none;
+    }
+}
+
+.complete {
+    text-decoration: line-through;
+    color: #999;
 }

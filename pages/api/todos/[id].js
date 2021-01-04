@@ -28,9 +28,17 @@ export default async (req, res) => {
                 const update = {
                     ...body,
                 }
-                await TODO.findOneAndUpdate({ _id: id }, update)
+                await Todo.findOneAndUpdate({ _id: id }, update)
 
                 return res.status(200).json({ message: 'todo updated' })
+            } catch (error) {
+                return res.status(400).json({ error: error.message })
+            }
+        case 'DELETE':
+            try {
+                await Todo.findOneAndDelete({ _id: id })
+
+                return res.status(200).json({ message: 'todo deleted' })
             } catch (error) {
                 return res.status(400).json({ error: error.message })
             }
