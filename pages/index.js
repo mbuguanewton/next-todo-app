@@ -2,11 +2,15 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import axios from 'axios'
-import AddTodo from '../src/components/addTodo./AddTodo'
+import AddTodo from '../src/components/addTodo/AddTodo'
 import TodoList from '../src/components/todoList/TodoList'
+import { useAuth } from '../src/utils/context/User'
+import cookie from 'js-cookie'
 
 export default function Home({ todos }) {
     const router = useRouter()
+    const { user, login, logout } = useAuth()
+
     const [value, setValue] = useState('')
     const [edit, setEdit] = useState(false)
 
@@ -17,7 +21,9 @@ export default function Home({ todos }) {
     const handleSubmit = async () => {
         const todo = {
             title: value,
+            userId: user ? user.uid : null,
         }
+
         const res = await axios.post('http://localhost:3000/api/todos', todo)
         if (res.status === 200) {
             router.push('/')
@@ -38,26 +44,29 @@ export default function Home({ todos }) {
                 setValue={setValue}
                 edit={edit}
                 submit={handleSubmit}
+                user={user}
+                logout={logout}
             />
             <TodoList
                 todos={todos}
                 setValue={setValue}
                 edit={edit}
                 toggle={toggle}
+                user={user}
+                login={login}
             />
-            {/* <pre>{JSON.stringify(todos, null, 4)}</pre> */}
         </div>
     )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const config = {
         headers: {
             'content-type': 'application/json',
         },
     }
 
-    const res = await axios.get('http://localhost:3000/api/todos', config)
+    const res = await axios.get(`http://localhost:3000/api/todos`, config)
 
     const { data } = res
 

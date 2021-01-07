@@ -9,6 +9,10 @@ const TodoSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    userId: {
+        type: String,
+        default: null,
+    },
     created: {
         type: Number,
         default: new Date().getTime(),

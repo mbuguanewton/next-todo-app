@@ -40,9 +40,11 @@ function EditTodo({ todo, open, toggle }) {
             onClose={toggle}
             TransitionComponent={Transition}
             keepMounted
-            style={{ borderRadius: '10px', padding: '10px' }}>
-            <DialogTitle id='alert-dialog-title'>Edit {todo.title}</DialogTitle>
-            <DialogContent>
+            className='dialog'>
+            <DialogTitle id='alert-dialog-title'>
+                Edit : {todo.title}
+            </DialogTitle>
+            <DialogContent className='dialog__content'>
                 <DialogContentText id='alert-dialog-description'>
                     <input
                         name='title'

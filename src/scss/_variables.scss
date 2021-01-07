@@ -1,2 +1,7 @@
 $prime-color: #10b4e8;
 $red: #df2956;
+
+:export {
+    primary: $prime-color;
+    danger: $red;
+}

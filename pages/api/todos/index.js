@@ -9,7 +9,9 @@ export default async (req, res) => {
     switch (method) {
         case 'GET':
             try {
-                const todos = await Todo.find({}).sort({ _id: -1 })
+                const todos = await Todo.find({}).sort({
+                    _id: -1,
+                })
                 return res.json(todos)
             } catch (error) {
                 return res.status(400).json({ error: error.message })
@@ -19,6 +21,7 @@ export default async (req, res) => {
             try {
                 const todo = new Todo({
                     title: body.title,
+                    userId: body.userId,
                 })
 
                 const savedTodo = await todo.save()
@@ -30,7 +33,7 @@ export default async (req, res) => {
 
         default:
             return res.json({
-                message: 'you are accessing the todos api',
+                message: 'Not request method detected',
             })
     }
 }
